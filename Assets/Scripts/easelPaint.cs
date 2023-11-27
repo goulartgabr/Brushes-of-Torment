@@ -25,6 +25,7 @@ public class easelPaint : MonoBehaviour
         painting = false;
     }
 
+
     void OnTriggerStay(Collider other)
     {
         if (painting == false)
@@ -72,3 +73,5 @@ public class easelPaint : MonoBehaviour
         }
     }
 }
+
+

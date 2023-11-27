@@ -10,8 +10,6 @@ public class SceneFader : MonoBehaviour
     public Image fadeImage;
     public float fadeSpeed = 1.0f;
 
-    private bool isFading = false;
-
     public void StartScene(string sceneName)
     {
         StartCoroutine(FadeOutAndLoadScene(sceneName));

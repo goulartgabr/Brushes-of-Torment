@@ -15,12 +15,12 @@ public class letterScript : MonoBehaviour
     void Start()
     {
         inticon.SetActive(false);
-        letterCanvas.enabled = false; // Hide the canvas initially.
+        letterCanvas.enabled = false;
     }
 
     void Update()
     {
-        // Check if the UI is visible and the player clicks anywhere on the screen.
+    
         if (isUIVisible && Input.GetMouseButtonDown(0))
         {
             ToggleLetterCanvas();

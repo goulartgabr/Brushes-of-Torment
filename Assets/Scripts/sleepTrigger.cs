@@ -41,7 +41,7 @@ public class sleepTrigger : MonoBehaviour
             {
                 inticon.SetActive(false);
                 interact.Play();
-                if (sceneFader != null) // Check for null reference
+                if (sceneFader != null) 
                 {
                     sceneFader.StartScene(LevelName);
                 }
