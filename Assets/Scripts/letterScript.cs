@@ -10,12 +10,15 @@ public class letterScript : MonoBehaviour
     public Canvas letterCanvas;
     public Image letterImage;
 
+    public static bool cardOnScreen;
+
     private bool isUIVisible = false;
 
     void Start()
     {
         inticon.SetActive(false);
         letterCanvas.enabled = false;
+        cardOnScreen = false;
     }
 
     void Update()
@@ -24,6 +27,7 @@ public class letterScript : MonoBehaviour
         if (isUIVisible && Input.GetMouseButtonDown(0))
         {
             ToggleLetterCanvas();
+            letterCanvas.enabled = true;
         }
     }
 
@@ -33,6 +37,7 @@ public class letterScript : MonoBehaviour
         letterCanvas.enabled = isUIVisible;
         Cursor.lockState = isUIVisible ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = isUIVisible;
+        cardOnScreen = true;
     }
 
     void OnTriggerStay(Collider other)
@@ -44,8 +49,10 @@ public class letterScript : MonoBehaviour
             {
                 letter.SetActive(false);
                 inticon.SetActive(false);
+                
                 interact.Play();
                 ToggleLetterCanvas();
+                
                 
             }
         }

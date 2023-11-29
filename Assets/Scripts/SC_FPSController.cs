@@ -29,9 +29,10 @@ public class SC_FPSController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
+ 
     void Update()
     {
+       if (letterScript.cardOnScreen == false) {
         // We are grounded, so recalculate move direction based on axes
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
@@ -41,7 +42,8 @@ public class SC_FPSController : MonoBehaviour
         float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
-
+        
+        
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
         {
             moveDirection.y = jumpSpeed;
@@ -50,6 +52,7 @@ public class SC_FPSController : MonoBehaviour
         {
             moveDirection.y = movementDirectionY;
         }
+        
 
         // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
         // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
@@ -70,5 +73,6 @@ public class SC_FPSController : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+       }
     }
 }

@@ -19,7 +19,7 @@ public class UIControl : MonoBehaviour
             // Toggle the visibility of the UI canvas when the button is clicked.
             letterCanvas.enabled = !letterCanvas.enabled;
             letterCanvas.gameObject.SetActive(false);
-
+            letterScript.cardOnScreen = false;
             Debug.Log("Changing letterCanvas state -> " + letterCanvas.enabled);
 
             // Toggle the cursor lock and visibility, just like in your original script.
