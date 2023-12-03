@@ -56,7 +56,7 @@ public class SceneFader : MonoBehaviour
 
     void Awake()
 {
-    DontDestroyOnLoad(this.gameObject);
+    DontDestroyOnLoad(this.fadeImage);
 }
 
 }

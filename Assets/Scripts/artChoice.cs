@@ -5,10 +5,14 @@ using UnityEngine.Rendering;
 
 public class artChoice : MonoBehaviour
 {
-    public GameObject artOptionOne,
-        artOptionTwo,
-        artChosenOne,
-        artChosenTwo,
+    public GameObject choiceA,
+        choiceB,
+        choice1,
+        choice2,
+        artA1,
+        artA2,
+        artB1,
+        artB2,
         inttext,
         lockedtext;
 
@@ -18,7 +22,7 @@ public class artChoice : MonoBehaviour
 
     public AudioSource interact;
 
-    public static bool brushfound;
+    public static bool brushfound, pickedA, pickedB, picked1, picked2;
 
     void Start()
     {
@@ -37,13 +41,15 @@ public class artChoice : MonoBehaviour
                     {
                         inttext.SetActive(true);
 
-                        if (gameObject == artOptionOne)
+                        if (gameObject == choiceA)
                         {
                             if (Input.GetMouseButtonDown(0))
                             {
-                                artOptionOne.SetActive(false);
-                                artOptionTwo.SetActive(false);
-                                artChosenOne.SetActive(true);
+                                choiceA.SetActive(false);
+                                choiceB.SetActive(false);
+                                choice1.SetActive(true);
+                                choice2.SetActive(true);
+                                pickedA = true;
                                 inttext.SetActive(false);
                                 choosing = true;
                                 interact.Play();
@@ -51,17 +57,54 @@ public class artChoice : MonoBehaviour
                             }
                         }
 
-                        if (gameObject == artOptionTwo)
+                        if (gameObject == choiceB)
                         {
                             if (Input.GetMouseButtonDown(0))
                             {
-                                artOptionOne.SetActive(false);
-                                artOptionTwo.SetActive(false);
-                                artChosenTwo.SetActive(true);
+                                choiceA.SetActive(false);
+                                choiceB.SetActive(false);
+                                choice1.SetActive(true);
+                                choice2.SetActive(true);
+                                pickedB = true;
+                                inttext.SetActive(false);
+                                interact.Play();
+                            }
+                        }
+                        if (gameObject == choice1)
+                        {
+                            if (Input.GetMouseButtonDown(0))
+                            {
+                                choice1.SetActive(false);
+                                choice2.SetActive(false);
+                                picked1 = true;
                                 inttext.SetActive(false);
                                 choosing = true;
                                 interact.Play();
                                 sleepTrigger.paintDone = true;
+                                if (pickedA && picked1 == true){
+                                    artA1.SetActive(true);
+                                } else {
+                                    artB1.SetActive(true);
+                                }
+                            }
+                        }
+                        if (gameObject == choice2)
+                        {
+                            if (Input.GetMouseButtonDown(0))
+                            {
+                                choice1.SetActive(false);
+                                choice2.SetActive(false);
+                                picked2 = true;
+                                inttext.SetActive(false);
+                                choosing = true;
+                                interact.Play();
+                                sleepTrigger.paintDone = true;
+                                if (pickedA && picked2 == true){
+                                    artA2.SetActive(true);
+                                } else {
+                                    artB2.SetActive(true);
+                                }
+                                
                             }
                         }
 

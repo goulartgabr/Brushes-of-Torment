@@ -6,8 +6,10 @@ using UnityEngine.Rendering;
 public class easelPaint : MonoBehaviour
 {
     public GameObject easel,
-        artOptionOne,
-        artOptionTwo,
+        choiceA,
+        choiceB,
+        choice1,
+        choice2,
         inttext,
         lockedtext;
     public bool unlocked,
@@ -40,8 +42,8 @@ public class easelPaint : MonoBehaviour
 
                         if (Input.GetMouseButtonDown(0))
                         {
-                            artOptionOne.SetActive(true);
-                            artOptionTwo.SetActive(true);
+                            choiceA.SetActive(true);
+                            choiceB.SetActive(true);
                             inttext.SetActive(false);
                             interact.Play();
                             painting = true;

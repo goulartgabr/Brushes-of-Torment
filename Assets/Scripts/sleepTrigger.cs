@@ -5,22 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class sleepTrigger : MonoBehaviour
 {
-    public string LevelName;
     public GameObject inticon, bed;
     public AudioSource interact;
-    public SceneFader sceneFader; // Reference to the SceneFader script.
     public bool bedLocked = true;
     public GameObject lockedtext2;
+    public Animator animator;
 
     public static bool paintDone = false;
+    private int leveltoLoad;
 
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.Space)) // Replace with your preferred input condition
-        // {
-        //     sceneFader.StartScene(LevelName); // Test the scene transition and fading.
-        // }
-
+        // if (Input.GetKeyDown(KeyCode.Space)) // Replace with your preferred 
         if (paintDone)
         {
             bedLocked = false;
@@ -39,16 +35,29 @@ public class sleepTrigger : MonoBehaviour
             inticon.SetActive(true);
             if (Input.GetMouseButtonDown(0))
             {
+                FadetoNextLevel();
                 inticon.SetActive(false);
                 interact.Play();
-                if (sceneFader != null) 
-                {
-                    sceneFader.StartScene(LevelName);
-                }
+                
             }
         }
     }
 }
+public void FadetoNextLevel (){
+        FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+ public void FadeToLevel (int levelIndex)
+        {
+            leveltoLoad = levelIndex;
+             Debug.Log("Fading to level: " + levelIndex);
+            animator.SetTrigger("FadeOut");
+        }
+    public void OnFadeComplete () {
+        Debug.Log("Loading level: " + leveltoLoad);
+        SceneManager.LoadScene(leveltoLoad + SceneManager.GetActiveScene().buildIndex +1);
+
+    }
+
 
 
     void OnTriggerExit(Collider other)
